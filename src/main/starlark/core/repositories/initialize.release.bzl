@@ -93,15 +93,15 @@ def kotlin_repositories(
         if (criteria and compiler_release.version.startswith(criteria.prefix)) or (not selected_version and not criteria):
             selected_version = version
 
-    rules_repository(
-        name = configured_repository_name,
-        archive = Label("//:%s.tgz" % selected_version),
-        parent = KOTLIN_RULES,
-        repo_mapping = {
-            "@dev_io_bazel_rules_kotlin": "@%s" % KOTLIN_RULES.workspace_name,
-            "@": "@%s" % KOTLIN_RULES.workspace_name,
-        },
-    )
+    if configured_repository_name:
+        rules_repository(
+            name = configured_repository_name,
+            archive = Label("//:%s.tgz" % selected_version),
+            parent = KOTLIN_RULES,
+            repo_mapping = {
+                "@dev_io_bazel_rules_kotlin": "@%s" % RULES_KOTLIN.workspace_name,
+            },
+        )
 
 def kotlinc_version(release, sha256):
     return version(
