@@ -46,7 +46,7 @@ def kotlin_repositories(
         name = compiler_repository_name,
         urls = [url.format(version = compiler_release.version) for url in compiler_release.url_templates],
         sha256 = compiler_release.sha256,
-        kotlin_rules = KOTLIN_RULES.workspace_name,
+        kotlin_rules = RULES_KOTLIN.workspace_name,
     )
 
     http_file(
@@ -97,7 +97,7 @@ def kotlin_repositories(
         rules_repository(
             name = configured_repository_name,
             archive = Label("//:%s.tgz" % selected_version),
-            parent = KOTLIN_RULES,
+            parent = RULES_KOTLIN,
             repo_mapping = {
                 "@dev_io_bazel_rules_kotlin": "@%s" % RULES_KOTLIN.workspace_name,
             },
