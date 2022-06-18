@@ -30,7 +30,7 @@ load(":versions.bzl", "version", _versions = "versions")
 
 versions = _versions
 
-KOTLIN_RULES = Label("//:all")
+RULES_KOTLIN = Label("//:all")
 
 def kotlin_repositories(
         compiler_repository_name = _KT_COMPILER_REPO,
